@@ -1,5 +1,7 @@
 FROM python:3.6-alpine
 LABEL maintainer=Christophe-Freijanes mail=cfreijanes@gmx.fr
+# Dependencies for the system
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get install python-dev python3-dev libsasl2-dev python-dev libldap2-dev libssl-dev -y
 # Set variables env ODOO_URL and PGADMIN_URL
 ENV ODOO_URL='http://localhost:8069'
 ENV PGADMIN_URL='http://localhost:5050'
