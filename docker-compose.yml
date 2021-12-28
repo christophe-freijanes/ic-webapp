@@ -9,7 +9,7 @@ services:
             - '8080:8080'
         volumes:
             - 'app-data:/opt'
-            - '/ic-webapp/api/*:/opt'   
+            - '/ic-webapp/*:/opt'   
         env_file:
             - .env_prod
         restart: unless-stopped
