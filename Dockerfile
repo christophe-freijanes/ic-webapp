@@ -14,6 +14,6 @@ RUN pip install flask
 EXPOSE 8080
 # Copy all files and folder to /opt
 COPY . /opt
-# Run the server python and start api
+# Run the server python and start script app.py
 ENTRYPOINT [ "python" ]
-CMD [ "app.py" ]
+CMD [ "./app.py" ]
