@@ -12,8 +12,7 @@ WORKDIR /opt
 RUN pip install flask
 # Configure network for API
 EXPOSE 8080
-# Copy all files and folder to /opt
+# Copy all files and folders to /opt
 COPY . /opt
 # Run the server python and start script app.py
-ENTRYPOINT [ "python" ]
-CMD [ "app.py" ]
+ENTRYPOINT [ "python", "app.py" ]
