@@ -16,4 +16,4 @@ EXPOSE 8080
 COPY . /opt
 # Run the server python and start script app.py
 ENTRYPOINT [ "python" ]
-CMD [ "./app.py" ]
+CMD [ "app.py" ]
