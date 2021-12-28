@@ -1,7 +1,7 @@
 FROM python:3.6-alpine
 LABEL maintainer=Christophe-Freijanes mail=cfreijanes@gmx.fr
 # Set variables env ODOO_URL and PGADMIN_URL
-ENV ODOO_URL='https://www.oddo.com'
+ENV ODOO_URL='http://localhost:8069'
 ENV PGADMIN_URL='http://localhost:5050'
 # Test variables env ODOO_URL and PGADMIN_URL
 RUN echo ${ODOO_URL}
