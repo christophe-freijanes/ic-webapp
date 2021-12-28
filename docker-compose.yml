@@ -1,0 +1,58 @@
+version: '3.3'
+services:
+    webapi:
+        build: '/ic-webapp/api/'
+        container_name: webapi
+        network_mode: webapp
+        ports:
+            - '8080:8080'
+        env_file:
+            - .env_prod
+    postgres:
+        env_file:
+            - .env_prod
+        container_name: db_webapp
+        image: 'postgres:13'
+        volumes:
+            - 'postgres:/var/lib/postgresql/data/pgdata'
+        network_mode: webapp
+        ports:
+            - '5432:5432'
+        restart: unless-stopped
+    pgadmin:
+        env_file:
+            - .env_prod
+        container_name: pgadmin_webapp
+        image: 'dpage:pgadmin4'
+        volumes:
+            - 'pgadmin:/var/lib/pgadmin'
+            - '/ic-webapp/api/servers.json:/pgadmin4/servers.json'
+        network_mode: webapp
+        ports:
+            - '5050:80'
+        links:
+            - 'db_webapp:pgsql-server'
+        restart: unless-stopped
+        depends_on:
+            - 'db_webapp'
+    odoo:
+        env_file:
+            - .env_prod
+        container_name: odoo_webapp
+        image: 'odoo:13.0'
+        volumes:
+            - odoo-web-data:/var/lib/odoo
+            - ./config:/etc/odoo
+            - ./addons:/mnt/extra-addons
+        network_mode: webapp
+        ports:
+            - '8069:8069'
+        restart: always
+        depends_on:
+            - 'db_webapp'
+networks:
+    webapp:
+volumes:
+    postgres:
+    pgadmin:
+    odoo-web-data:
